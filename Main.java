@@ -1,12 +1,18 @@
 import java.util.Scanner;
 import java.util.ArrayList;
 
+/**
+ * Main class that provides a console-based interface
+ * for the Student Course Registration System.
+ */
 public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        RegistrationSystem system = new RegistrationSystem();
+        RegistrationSystem system = new RegistrationSystem(); // Holds all students and courses
 
+        // Main menu loop
         while (true) {
+            // Display options
             System.out.println("\n==== Course Registration System ====");
             System.out.println("1. Add Student");
             System.out.println("2. Add Course");
@@ -19,10 +25,11 @@ public class Main {
             System.out.print("Select an option: ");
 
             int choice = scanner.nextInt();
-            scanner.nextLine(); // consume newline
+            scanner.nextLine(); // Consume leftover newline
 
             switch (choice) {
                 case 1:
+                    // Add a new student
                     System.out.print("Enter student name: ");
                     String name = scanner.nextLine();
                     System.out.print("Enter student ID: ");
@@ -35,19 +42,21 @@ public class Main {
                     break;
 
                 case 2:
+                    // Add a new course
                     System.out.print("Enter course name: ");
                     String courseName = scanner.nextLine();
                     System.out.print("Enter course code: ");
                     String courseCode = scanner.nextLine();
                     System.out.print("Enter course capacity: ");
                     int capacity = scanner.nextInt();
-                    scanner.nextLine(); // consume newline
+                    scanner.nextLine(); // Consume newline
                     Course newCourse = new Course(courseName, courseCode, capacity);
                     system.addCourse(newCourse);
                     System.out.println("Course added successfully.");
                     break;
 
                 case 3:
+                    // Enroll a student into a course
                     System.out.print("Enter student ID to enroll: ");
                     String enrollId = scanner.nextLine();
                     System.out.print("Enter course code: ");
@@ -62,6 +71,7 @@ public class Main {
                     break;
 
                 case 4:
+                    // Drop a student from a course
                     System.out.print("Enter student ID to drop: ");
                     String dropId = scanner.nextLine();
                     System.out.print("Enter course code: ");
@@ -76,6 +86,7 @@ public class Main {
                     break;
 
                 case 5:
+                    // Display all students in the system
                     System.out.println("All Students:");
                     for (Student s : system.getStudents()) {
                         System.out.println("- " + s.getName() + " (ID: " + s.getId() + ")");
@@ -83,6 +94,7 @@ public class Main {
                     break;
 
                 case 6:
+                    // Display all courses in the system
                     System.out.println("All Courses:");
                     for (Course c : system.getCourses()) {
                         System.out.println("- " + c.getCourseName() + " (" + c.getCourseCode() + "), Available Seats: " + c.getAvailableSeats());
@@ -90,6 +102,7 @@ public class Main {
                     break;
 
                 case 7:
+                    // Display all courses a student is enrolled in
                     System.out.print("Enter student ID: ");
                     String lookupId = scanner.nextLine();
                     Student targetStudent = findStudentById(system.getStudents(), lookupId);
@@ -104,17 +117,21 @@ public class Main {
                     break;
 
                 case 8:
+                    // Exit the application
                     System.out.println("Exiting... Goodbye!");
                     scanner.close();
                     return;
 
                 default:
+                    // Invalid input handler
                     System.out.println("Invalid option. Please try again.");
             }
         }
     }
 
-    // Helper method to find a student by ID
+    /**
+     * Helper method to find a student by ID.
+     */
     public static Student findStudentById(ArrayList<Student> students, String id) {
         for (Student s : students) {
             if (s.getId().equalsIgnoreCase(id)) {
@@ -124,7 +141,9 @@ public class Main {
         return null;
     }
 
-    // Helper method to find a course by course code
+    /**
+     * Helper method to find a course by course code.
+     */
     public static Course findCourseByCode(ArrayList<Course> courses, String code) {
         for (Course c : courses) {
             if (c.getCourseCode().equalsIgnoreCase(code)) {
@@ -134,4 +153,3 @@ public class Main {
         return null;
     }
 }
-
