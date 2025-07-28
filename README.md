@@ -16,12 +16,11 @@ It's a menu-driven system that runs in the terminal using user input.
 
 ## Project Structure
 
-.
-├── Main.java # Runs the console application and handles user input
-├── Student.java # Defines the Student class and student behavior
-├── Course.java # Defines the Course class and course enrollment logic
-├── RegistrationSystem.java # Manages student and course lists
-└── README.md # Project documentation
+Main.java # Runs the console application and handles user input
+Student.java # Defines the Student class and student behavior
+Course.java # Defines the Course class and course enrollment logic
+RegistrationSystem.java # Manages student and course lists
+README.md # Project documentation
 
 markdown
 Copy
